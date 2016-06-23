@@ -4,27 +4,30 @@ module.exports = function(grunt) {
     * tasks configurations.
     */
     var config = require('./grunt_tasks/config');
-    var connect = require('./grunt_tasks/connect');
+    var browserify = require('./grunt_tasks/browserify');
+    var copy = require('./grunt_tasks/copy');
 
     // Project configuration.
     grunt.initConfig({
       pkg: grunt.file.readJSON('package.json'),
 
       configs: config,
-      connect: connect,
+      browserify: browserify,
+      copy: copy
     });
 
     /**
     * load tasks.
     */
-    grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-browserify');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
     /*
     * register tasks
     */
 
-    // Run a local server instance
-    grunt.registerTask('run', [
-      'connect:server'
+    grunt.registerTask('build', [
+      'browserify:build',
+      'copy:build'
     ]);
 };
