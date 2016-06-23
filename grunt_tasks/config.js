@@ -1,3 +1,4 @@
 module.exports = config = {
-	build: './build/'
+	build: './build/',
+	app: './app/'
 };
